@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=db
+    ports:
+      - "3306:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - data-minio:/data
+    environment:
+      - MINIO_ACCESS_KEY=minio_access_key
+      - MINIO_SECRET_KEY=minio_secret_key
+    command: server /data
+volumes:
+  my-db:
+  data-minio:
