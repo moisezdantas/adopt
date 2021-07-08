@@ -8,8 +8,9 @@ export const theme = {
       black: '#000000',
       gray: '#BDBDBD',
       red: '#c53030',
-      placeholder: '#666360'
-     
+      placeholder: '#666360',
+      buttonBlue:'#86A8DC',
+      buttonBlue2:'#2D578E' 
 
     },
   
