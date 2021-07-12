@@ -10,7 +10,6 @@ public class AnimalFactory {
     public static Animal createAnimalBasic(Long id) {
         Animal animal = new Animal();
         animal.setId(id);
-        animal.setAnimalType(AnimalTypeFactory.createBasicAnimalType());
         animal.setRga("1232s");
         animal.setBirthDate("18/12/2010");
         animal.setDeficiency("12 e 18 anos");

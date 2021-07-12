@@ -16,10 +16,6 @@ public class Animal implements Serializable {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "animal_type_id")
-    private AnimalType animalType;
-
     private String rga; // Registro geral do animal
 
     @Column(name = "birth_date")
@@ -53,13 +49,15 @@ public class Animal implements Serializable {
     @Column(name = "created_at")
     private Calendar createdAt;
 
+    @Column(name= "image_url")
+    private String imageUrl;
+
     public Animal() {
     }
 
-    public Animal(Long id, String name, AnimalType animalType, String rga, String birthDate, String deficiency, EnumVaccinated isVaccinated, EnumTypeAnimalGender typeAnimalGender, Boolean isCastrated, Integer year, String note, Breed breed, Address address) {
+    public Animal(Long id, String name, String rga, String birthDate, String deficiency, EnumVaccinated isVaccinated, EnumTypeAnimalGender typeAnimalGender, Boolean isCastrated, Integer year, String note, Breed breed, Address address, String imageUrl) {
         this.id = id;
         this.name = name;
-        this.animalType = animalType;
         this.rga = rga;
         this.birthDate = birthDate;
         this.deficiency = deficiency;
@@ -70,6 +68,7 @@ public class Animal implements Serializable {
         this.note = note;
         this.breed = breed;
         this.address = address;
+        this.imageUrl = imageUrl;
     }
 
     @PrePersist
@@ -91,14 +90,6 @@ public class Animal implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public AnimalType getAnimalType() {
-        return animalType;
-    }
-
-    public void setAnimalType(AnimalType animalType) {
-        this.animalType = animalType;
     }
 
     public String getRga() {
@@ -187,6 +178,14 @@ public class Animal implements Serializable {
 
     public void setCreatedAt(Calendar createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

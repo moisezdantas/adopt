@@ -82,29 +82,3 @@ export function Home() {
     </KeyboardAvoidingView>
   );
 }
-
-{
-  /* <View style={styles.grupoButton}>
-<ButtonSquare 
-  title="Adotar um amigo" 
-  onPress={() => console.log('d')}
-  cor={theme.colors.buttonPrimary}
-/>
- <ButtonSquare 
-  title="Adotar um amigo" 
-  onPress={() => console.log('d')}
-  cor={theme.colors.buttonSuccess}
-/>
-</View>
-<View style={styles.grupoButton}>
-<ButtonSquare 
-  title="Adotar um amigo" 
-  onPress={() => console.log('d')}
-  cor={theme.colors.buttonBlue}
-/>
-   <ButtonSquare 
-  title="Adotar um amigo" 
-  onPress={() => console.log('d')}
-  cor={theme.colors.buttonBlue2}
-/> */
-}

@@ -20,12 +20,12 @@ public class UserFactory {
     }
 
     public static User createUserBasic(Long id){
-        User user = new User(id, "test@gmail.com", "password");
+        User user = new User(id, "teste@gmail.com", "password");
         return user;
     }
 
     public static UserDTO createUserBasicDTO(Long id){
-        UserDTO dto = new UserDTO("test@gmail.com", "password");
+        UserDTO dto = new UserDTO("teste@gmail.com", "password");
         dto.setId(id);
         dto.getRoles().addAll(RoleFactory.createRolesUserDTO());
         return dto;

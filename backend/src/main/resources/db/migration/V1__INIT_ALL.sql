@@ -122,7 +122,6 @@ CREATE TABLE `tb_breed` (
 CREATE TABLE `tb_animal` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `type_animal` bigint DEFAULT NULL,
   `rga` varchar(255) DEFAULT NULL,
   `birth_date` varchar(255) DEFAULT NULL,
   `deficiency` varchar(255) DEFAULT NULL,
@@ -130,12 +129,12 @@ CREATE TABLE `tb_animal` (
   `type_animal_gender` bigint DEFAULT NULL,
   `is_castrated` bit(1) DEFAULT NULL,
   `note` varchar(255) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
   `year` bigint DEFAULT NULL,
   `breed_id` bigint DEFAULT NULL,
   `address_id` bigint DEFAULT NULL,
-  `animal_type_id` bigint DEFAULT NULL,
+  `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`animal_type_id`) REFERENCES `tb_animal_type` (`id`),
   FOREIGN KEY (`breed_id`) REFERENCES `tb_breed` (`id`),
   FOREIGN KEY (`address_id`) REFERENCES `tb_address` (`id`)
 );

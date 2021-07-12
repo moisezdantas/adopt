@@ -10,14 +10,21 @@ import { styles } from "./styles";
 import { theme } from "../../global/styles/theme";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../hook/auth";
+import { Background } from "../Background";
 
 type Props = {
   title: string;
   action?: ReactNode;
   isVisibleBack?: boolean;
+  isVisibleLogout?: boolean;
 };
 
-export function Header({ title, action, isVisibleBack = false }: Props) {
+export function Header({
+  title,
+  action,
+  isVisibleBack = false,
+  isVisibleLogout = false,
+}: Props) {
   const { primary } = theme.colors;
 
   const { singOut } = useAuth();
@@ -27,9 +34,9 @@ export function Header({ title, action, isVisibleBack = false }: Props) {
   function handleGoBack() {
     navigation.goBack();
   }
-  
+
   return (
-    <LinearGradient style={styles.container} colors={[primary, primary]}>
+    <View style={styles.container}>
       {isVisibleBack && (
         <BorderlessButton onPress={handleGoBack}>
           <Image source={ArrowPng} />
@@ -37,11 +44,12 @@ export function Header({ title, action, isVisibleBack = false }: Props) {
       )}
 
       <Text style={styles.title}>{title}</Text>
-      {action ? <View>{action}</View> : <View style={{ width: 24 }} />}
 
-      <BorderlessButton onPress={() => singOut()}>
+      {isVisibleLogout && (
+        <BorderlessButton onPress={() => singOut()}>
           <Image source={ArrowLeftPng} />
         </BorderlessButton>
-    </LinearGradient>
+      )}
+    </View>
   );
 }

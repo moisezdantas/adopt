@@ -13,7 +13,6 @@ import { BorderlessButton } from "react-native-gesture-handler";
 export function Profile() {
   const { user, singOut } = useAuth();
 
-  console.log(user);
 
   function handleSignOut() {
     Alert.alert("Logout", "Deseja sair do GamePlay", [
@@ -34,12 +33,8 @@ export function Profile() {
       <View style={styles.profile}>
         <View style={styles.user}>
           <Text style={styles.greeting}>Olá,</Text>
-
           <Text style={styles.username}>{user.firstName}</Text>
         </View>
-        <BorderlessButton onPress={() => singOut()}>
-            <Image source={ArrowLeftPng} />
-          </BorderlessButton>
       </View>
     </View>
   );

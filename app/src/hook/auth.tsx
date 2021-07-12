@@ -11,19 +11,11 @@ import * as AuthSession from "expo-auth-session";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {Alert} from 'react-native'
 
-//   const { SCOPE } = process.env;
-//   const { CLIENT_ID } = process.env;
-//   const { CDN_IMAGE } = process.env;
-//   const { REDIRECT_URI } = process.env;
-//   const { RESPONSE_TYPE } = process.env;
-
 import { api } from "../services/api";
 import { COLLECTION_USERS } from "../config/user";
-import { Base64 } from "../utils/boa";
 import { MakeLogin } from "../services/request";
-// import { Use } from "react-native-svg";
 
-type User = {
+export type User = {
   id: string;
   userName: string;
   firstName: string;

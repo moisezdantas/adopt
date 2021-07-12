@@ -30,10 +30,6 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         marginHorizontal: 5,
         margin: 4,
-        padding: 5,
-      },
-      text: {
-        color: "#333333"
+        padding: 2,
       }
-
 });

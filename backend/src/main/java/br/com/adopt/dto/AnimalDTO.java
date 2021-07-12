@@ -1,6 +1,7 @@
 package br.com.adopt.dto;
 
 import br.com.adopt.entity.Animal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 
@@ -8,7 +9,6 @@ public class AnimalDTO implements Serializable {
 
     private Long id;
     private String name;
-    private AnimalTypeDTO animalType;
     private String rga; // Registro geral do animal
     private String birthDate;
     private String deficiency;
@@ -18,14 +18,14 @@ public class AnimalDTO implements Serializable {
     private Integer year;
     private String note;
     private BreedDTO breed;
-    private AddressDTO addressDTO;
+    private AddressDTO address;
+    private String imageUrl;
 
     public AnimalDTO() {}
 
-    public AnimalDTO(Long id, String name, AnimalTypeDTO animalType, String rga, String birthDate, String deficiency, Integer typeVaccinated, Integer typeAnimalGender, Boolean castrated, Integer year, String note, BreedDTO breed, AddressDTO addressDTO) {
+    public AnimalDTO(Long id, String name, String rga, String birthDate, String deficiency, Integer typeVaccinated, Integer typeAnimalGender, Boolean castrated, Integer year, String note, BreedDTO breed, AddressDTO address, String imageUrl) {
         this.id = id;
         this.name = name;
-        this.animalType = animalType;
         this.rga = rga;
         this.birthDate = birthDate;
         this.deficiency = deficiency;
@@ -35,23 +35,24 @@ public class AnimalDTO implements Serializable {
         this.year = year;
         this.note = note;
         this.breed = breed;
-        this.addressDTO = addressDTO;
+        this.address = address;
+        this.imageUrl = imageUrl;
     }
 
     public AnimalDTO(Animal animal) {
         this.id = animal.getId();
         this.name = animal.getName();
-        this.animalType = new AnimalTypeDTO(animal.getAnimalType());
         this.rga = animal.getRga();
         this.birthDate = animal.getBirthDate();
         this.deficiency = animal.getDeficiency();
-        this.typeVaccinated = animal.getIsVaccinated().ordinal();
+        this.typeVaccinated =  animal.getIsVaccinated() != null ? animal.getIsVaccinated().ordinal(): null;
         this.typeAnimalGender = animal.getTypeAnimalGender().ordinal();
         this.isCastrated = animal.isCastrated();
         this.year = animal.getYear();
         this.note = animal.getNote();
         this.breed = new BreedDTO(animal.getBreed());
-        this.addressDTO = new AddressDTO(animal.getAddress());
+        this.address = animal.getAddress() != null ? new AddressDTO(animal.getAddress()) : null;
+        this.imageUrl = animal.getImageUrl();;
     }
 
     public Long getId() {
@@ -68,14 +69,6 @@ public class AnimalDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public AnimalTypeDTO getAnimalType() {
-        return animalType;
-    }
-
-    public void setAnimalType(AnimalTypeDTO animalType) {
-        this.animalType = animalType;
     }
 
     public String getRga() {
@@ -150,11 +143,19 @@ public class AnimalDTO implements Serializable {
         this.breed = breed;
     }
 
-    public AddressDTO getAddressDTO() {
-        return addressDTO;
+    public AddressDTO getAddress() {
+        return address;
     }
 
-    public void setAddressDTO(AddressDTO addressDTO) {
-        this.addressDTO = addressDTO;
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

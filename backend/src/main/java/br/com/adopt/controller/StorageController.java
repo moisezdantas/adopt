@@ -38,7 +38,6 @@ public class StorageController {
             @ApiResponse(code = 500, message = ApiUtilOperation.MESSAGE_500),
     })
     @PostMapping(value = "upload")
-    @Secured({SecuredUtil.ROLE_ADMIN, SecuredUtil.ROLE_USER})
     public ResponseEntity<ImageDTO> upload(@RequestParam("file") MultipartFile multipartFile) {
         try {
             ImageDTO dto =  storage.minioUpload(multipartFile);
@@ -58,7 +57,6 @@ public class StorageController {
             @ApiResponse(code = 500, message = ApiUtilOperation.MESSAGE_500),
     })
     @GetMapping(value = "/view/**")
-    @Secured({SecuredUtil.ROLE_ADMIN, SecuredUtil.ROLE_USER})
     public void view(HttpServletRequest request, HttpServletResponse response) {
         String imgPath = extractPathFromPattern(request);
         InputStream inputStream = null;

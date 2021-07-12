@@ -7,6 +7,7 @@ import br.com.adopt.repository.AnimalRepository;
 import br.com.adopt.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +38,24 @@ public class AnimalService {
     @Transactional(readOnly = true)
     public Page<AnimalDTO> findAllPaged(PageRequest pageRequest) {
         Page<Animal> page = animalRepository.findAll(pageRequest);
+        return page.map(x -> new AnimalDTO(x));
+    }
+
+    /**
+     * Method for return list animal
+     *
+     * @param pageRequest
+     * @return Page<AnimalDTO>
+     */
+    @Transactional(readOnly = true)
+    public Page<AnimalDTO> findAllAnimalTypePaged(Long id, PageRequest pageRequest) {
+        Page<Animal> page = null;
+        if(id != 0L){
+            page = animalRepository.findAllByAnimalType(id, pageRequest);
+        }else {
+            page = animalRepository.findAll(pageRequest);
+        }
+
         return page.map(x -> new AnimalDTO(x));
     }
 
@@ -75,8 +94,7 @@ public class AnimalService {
     private void copyDtoToEntity(AnimalDTO dto, Animal animal) {
         animal.setYear(dto.getYear());
         animal.setIsCastrated(dto.isCastrated());
-        animal.setAnimalType(animalTypeService.findById(dto.getId()));
-        animal.setAddress(addressService.createAddress(dto.getAddressDTO()));
+        animal.setAddress(addressService.createAddress(dto.getAddress()));
         animal.setBreed(breedService.findById(dto.getBreed().getId()));
         animal.setIsCastrated(dto.isCastrated());
         animal.setNote(dto.getNote());
