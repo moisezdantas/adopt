@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    width: 360,
     height: 130,
     marginBottom: 20,
     backgroundColor: "#F5F5FA",
@@ -18,7 +17,8 @@ export const styles = StyleSheet.create({
   image: {
     width: 112,
     height: 88,
-    borderRadius: 15
+    borderRadius: 15,
+    backgroundColor: theme.colors.white
   },
   cardContext: {
      paddingLeft: 10
@@ -34,10 +34,10 @@ export const styles = StyleSheet.create({
     color: '#828282'
   },
   cardDescription: {
+    width: '80%',
     fontFamily: theme.fonts.text400,
-    fontSize: 13,
-    lineHeight: 20,
-    color: '#4F4F4F'
+    fontSize: 14,
+    color: '#4F4F4F',
   }
 });
 

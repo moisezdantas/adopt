@@ -2,7 +2,7 @@ package br.com.adopt.entity;
 
 public enum EnumTypeAnimalGender {
 
-	FEMALE(0), MALE(1);
+	FEMALE(1), MALE(2);
 	
 	private Integer type;
 	

@@ -1,4 +1,3 @@
-import { theme } from './../../global/styles/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -10,6 +9,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent:'center',
     padding: 20,
-    marginTop: 110,
+    marginTop: 70,
   }
 });

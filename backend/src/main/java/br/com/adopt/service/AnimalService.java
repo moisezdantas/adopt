@@ -73,6 +73,19 @@ public class AnimalService {
     }
 
     /**
+     * Method for return find by id
+     *
+     * @param id
+     * @return AnimalDTO
+     */
+    @Transactional(readOnly = true)
+    public Animal findAnimalById(Long id) {
+        Optional<Animal> animalSource = animalRepository.findById(id);
+        Animal animal = animalSource.orElseThrow(() -> new ResourceNotFoundException("Entity not found:" + id));
+        return animal;
+    }
+
+    /**
      * Method for create animal
      *
      * @param dto

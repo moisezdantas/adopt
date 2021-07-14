@@ -94,10 +94,8 @@ class Http {
 
   // Handle global app errors
   // We can handle generic app errors depending on the status code
-  private handleError(error) {
+  private handleError(error: { status: any; }) {
     const { status } = error;
-
-    console.log(status)
 
     switch (status) {
       case StatusCode.InternalServerError: {

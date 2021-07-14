@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef } from "react";
 
 import { Form } from "@unform/mobile";
 
@@ -10,7 +10,7 @@ import {
   View,
   TouchableOpacity,
   Platform,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import Input from "../../components/Input";
 import { Button } from "../../components/Button";

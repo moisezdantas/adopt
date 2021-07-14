@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
+        marginTop: 10,
     },
     profile: {
         flex: 1,

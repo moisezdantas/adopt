@@ -1,13 +1,5 @@
 import React from "react";
-import { useAuth } from "../../hook/auth";
-import {
-  View,
-  KeyboardAvoidingView,
-  ScrollView,
-  Platform,
-  Text,
-  FlatList,
-} from "react-native";
+import { View, KeyboardAvoidingView, Platform, FlatList } from "react-native";
 
 import LogoSvg from "../../assets/animal.svg";
 
@@ -21,11 +13,7 @@ import { Profile } from "../../components/Profile";
 import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
-  const { user } = useAuth();
-
   const navigation = useNavigation();
-
-  console.log(user);
 
   return (
     <KeyboardAvoidingView
@@ -33,7 +21,7 @@ export function Home() {
       style={styles.container}
     >
       <Background>
-        <Profile />
+        <Profile  />
         <LogoSvg style={styles.image} />
         <View style={styles.grupoButton}>
           <FlatList

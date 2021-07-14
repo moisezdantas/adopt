@@ -5,7 +5,6 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import { Buffer } from "buffer";
 
 import * as AuthSession from "expo-auth-session";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,11 +18,9 @@ export type User = {
   id: string;
   userName: string;
   firstName: string;
-  //  avatar: string;
   email: string;
   access_token: string;
 };
-
 interface SignInCredentials {
   email: string;
   password: string;

@@ -12,7 +12,8 @@ export const theme = {
       buttonBlue:'#86A8DC',
       buttonBlue2:'#2D578E',
       themeGradiente: '#E5E5E5',
-      purple: '#57419D'
+      purple: '#57419D',
+      white: '#FFF'
     },
   
     fonts: {

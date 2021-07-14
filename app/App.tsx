@@ -17,6 +17,7 @@ LogBox.ignoreLogs([
 import { AuthProvider } from "./src/hook/auth";
 import { Routes } from "./src/routes";
 import { Background } from "./src/components/Background";
+import { theme } from "./src/global/styles/theme";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -34,8 +35,8 @@ export default function App() {
   return (
     <Background>
       <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
+        barStyle="dark-content"
+        backgroundColor={theme.colors.white}
         translucent
       />
       <AuthProvider>

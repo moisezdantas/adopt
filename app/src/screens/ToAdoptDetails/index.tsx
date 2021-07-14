@@ -1,33 +1,76 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useAuth } from "../../hook/auth";
-import { View, KeyboardAvoidingView, Platform, FlatList } from "react-native";
+import React from "react";
+import {
+  View,
+  KeyboardAvoidingView,
+  Platform,
+  Image,
+  Text,
+} from "react-native";
 
-import { theme } from "../../global/styles/theme";
+import MaterialCommunityIcons from "react-native-vector-icons/FontAwesome";
 
-import { Background } from "../../components/Background";
-
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Header } from "../../components/Header";
-import { Card } from "../../components/Card";
-import { ButtonRound } from "../../components/ButtonRound";
-import { fetchAnimalType, fetchAnimal } from "../../services/request";
-import { AnimalType } from "../../interfaces/animalType";
-import { Animal } from "../../interfaces/animal";
-import { Load } from "../../components/Load";
 
+import { Animal } from "../../interfaces/animal";
 import { styles } from "./styles";
+import { theme } from "../../global/styles/theme";
+import { api } from "../../services/api";
+import { Button } from "../../components/Button";
+
+type Params = {
+  data: Animal;
+};
 
 export function ToAdoptDetails() {
+  const route = useRoute();
+  const { data } = route.params as Params;
+
+  const urlImage = `${api.defaults.baseURL}/storage/view/${data.imageUrl}`;
+
+  console.log(data);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <Background>
-        <View>
-          <Header title="Perfil do Amigo" isVisibleBack isVisibleLogout />
+      <View style={styles.view}>
+        <Header
+          title="Perfil do Amigo"
+          isVisibleBack
+          isVisibleLogout
+          cor={theme.colors.white}
+          isDefaultButton={false}
+        />
+        <Image source={{ uri: urlImage }} style={styles.image} />
+      </View>
+      <View style={styles.content}>
+          <Text style={styles.city}>
+            {`${data.address.city} - ${data.address.district}`}
+          </Text>
+          <View style={styles.icon}>
+            <MaterialCommunityIcons name="intersex" size={24} /> 
+            <Text style={styles.male}>{data.typeAnimalGender === 1 ? ' Macho' : ' Fêmea'} </Text>
+          </View>
+          
+          <Text style={styles.title} >
+              {`Descrição do amigo(a)`}
+          </Text>
+          <View style={styles.row}>
+            <Text style={styles.description}>
+              {`${data.note}`}
+            </Text>
+          </View>
         </View>
-      </Background>
+        <View style={styles.row}>
+        <Button
+            title="Adotar amigo(a)"
+            onPress={() => console.log("")}
+            cor={theme.colors.purple}
+          />
+         
+        </View>
     </KeyboardAvoidingView>
   );
 }

@@ -2,10 +2,7 @@ import React, { useRef, useState } from "react";
 
 import {
   View,
-  Text,
   ScrollView,
-  KeyboardAvoidingView,
-  Platform,
   Alert,
 } from "react-native";
 
@@ -110,8 +107,8 @@ export function SignUp() {
     <Background>
       <View style={styles.container}>
         {loading && <AppLoading />}
+        <Header title="Criar Conta" isVisibleBack />
         <ScrollView>
-          <Header title="Criar Conta" isVisibleBack />
           <View style={styles.content}>
             <Form ref={formRef} onSubmit={handleSubmit}>
               <Input name="name" placeholder="Digite seu nome" />

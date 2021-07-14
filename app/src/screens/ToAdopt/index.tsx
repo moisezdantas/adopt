@@ -34,7 +34,7 @@ export function ToAdopt() {
   const fetchDataAnimal = useCallback(async (animalTypeId?: number) => {
     setLoading(true);
     const data = await fetchAnimal({
-      animalTypeId: animalTypeId === 0 ? 0: animalTypeId,
+      animalTypeId: animalTypeId === 0 ? 0 : animalTypeId,
     });
     setAnimals(data?.content);
     setLoading(false);
@@ -68,52 +68,44 @@ export function ToAdopt() {
     setSelectAnimalType(data.id);
   }, []);
 
-  function details(){
-    navigation.navigate('ToAdoptDetails')
+  function details(data: Animal) {
+    navigation.navigate("ToAdoptDetails", { data });
   }
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <Background>
-        <Header title="Adotar" isVisibleBack isVisibleLogout />
-        <View>
-          <FlatList
-            data={animalTypes}
-            horizontal
-            style={styles.flatListTypeAnimal}
-            renderItem={({ item }) => {
-              return (
-                <ButtonRound
-                  cor={theme.colors.primary}
-                  title={item.description}
-                  checked={item.checked}
-                  onPress={() => handleSelect(item, animalTypes)}
-                />
-              );
-            }}
-          />
-        </View>
-
-        <View>
+    <Background>
+      <Header title="Adotar" isVisibleBack isVisibleLogout />
+      <View style={styles.typeAnimal}>
+        <FlatList
+          data={animalTypes}
+          horizontal
+          renderItem={({ item }) => {
+            return (
+              <ButtonRound
+                cor={theme.colors.primary}
+                title={item.description}
+                checked={item.checked}
+                onPress={() => handleSelect(item, animalTypes)}
+              />
+            );
+          }}
+        />
+       
+      </View>
+      <View style={styles.animal}>
           {loading ? (
             <Load />
           ) : (
             <FlatList
               data={animals}
-              style={{ padding: 20 }}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => {
-                return (
-                  <Card data={item} onPress={details} />
-                );
+                return <Card data={item} onPress={() => details(item)} />;
               }}
             />
           )}
         </View>
-      </Background>
-    </KeyboardAvoidingView>
+    </Background>
   );
 }
+

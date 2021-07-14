@@ -128,7 +128,7 @@ CREATE TABLE `tb_animal` (
   `is_vaccinated` bigint DEFAULT NULL,
   `type_animal_gender` bigint DEFAULT NULL,
   `is_castrated` bit(1) DEFAULT NULL,
-  `note` varchar(255) DEFAULT NULL,
+  `note` TEXT DEFAULT NULL,
   `image_url` varchar(255) DEFAULT NULL,
   `year` bigint DEFAULT NULL,
   `breed_id` bigint DEFAULT NULL,

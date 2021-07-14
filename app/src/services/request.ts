@@ -8,7 +8,6 @@ import { Person } from '../interfaces/person';
 
 import { AnimalType } from '../interfaces/animalType';
 import { http } from './http'
-import { AnyObject } from 'yup/lib/types';
 
 type RequestParams = {
     method?: Method;
