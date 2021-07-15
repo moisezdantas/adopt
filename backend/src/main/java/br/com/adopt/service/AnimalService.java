@@ -53,7 +53,7 @@ public class AnimalService {
         if(id != 0L){
             page = animalRepository.findAllByAnimalType(id, pageRequest);
         }else {
-            page = animalRepository.findAll(pageRequest);
+            page = animalRepository.findAllAdopterIsNull(pageRequest);
         }
 
         return page.map(x -> new AnimalDTO(x));
@@ -96,6 +96,17 @@ public class AnimalService {
         Animal animal = new Animal();
         copyDtoToEntity(dto, animal);
         return new AnimalDTO(animal);
+    }
+
+    /**
+     * Method for update animal
+     *
+     * @param animal
+     * @return Animal
+     */
+    @Transactional
+    public Animal update(Animal animal) {
+        return animalRepository.save(animal);
     }
 
     /**

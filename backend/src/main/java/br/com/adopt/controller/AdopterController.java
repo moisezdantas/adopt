@@ -30,7 +30,7 @@ public class AdopterController {
     })
     @PostMapping
     @Secured({SecuredUtil.ROLE_ADMIN, SecuredUtil.ROLE_USER})
-    public ResponseEntity<Void> findAll(@RequestParam(value = "adopt") AdoptDTO dto) {
+    public ResponseEntity<Void> findAll(@RequestBody AdoptDTO dto) {
         service.adopt(dto);
         return ResponseEntity.ok().build();
     }

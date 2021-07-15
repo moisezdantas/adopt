@@ -39,6 +39,11 @@ type AnimalPaginationRequest = PaginationRequest & {
     animalTypeId?: number;
 }
 
+type AdoptAnimaProps = {
+    animalId: number;
+    userId: number;
+}
+
 const BASE_URL = api.defaults.baseURL
 
 export const MakeRequest = ({ method = 'GET', url, data, params, headers }: RequestParams) => {
@@ -95,4 +100,12 @@ export const fetchAnimal = async ({
     const url = `${params}page=${page}&linesPerPage=${linesPerPage}&direction=${direction}&orderBy=${orderBy}`
     const { data } = await http.get<AnimalPagePaginationProps>(url);
     return data;
+};
+
+
+export const adoptAnimal = async ({
+    animalId, userId
+}: AdoptAnimaProps): Promise<void> => {
+
+    await http.post<AdoptAnimaProps>('/adopter', {animalId, userId});
 };

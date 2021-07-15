@@ -46,6 +46,10 @@ public class Animal implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "adopter_id")
+    private Adopter adopter;
+
     @Column(name = "created_at")
     private Calendar createdAt;
 
@@ -55,7 +59,9 @@ public class Animal implements Serializable {
     public Animal() {
     }
 
-    public Animal(Long id, String name, String rga, String birthDate, String deficiency, EnumVaccinated isVaccinated, EnumTypeAnimalGender typeAnimalGender, Boolean isCastrated, Integer year, String note, Breed breed, Address address, String imageUrl) {
+    public Animal(Long id, String name, String rga, String birthDate, String deficiency, EnumVaccinated isVaccinated,
+                  EnumTypeAnimalGender typeAnimalGender, Boolean isCastrated, Integer year, String note, Breed breed,
+                  Address address, String imageUrl, Adopter adopter) {
         this.id = id;
         this.name = name;
         this.rga = rga;
@@ -69,6 +75,7 @@ public class Animal implements Serializable {
         this.breed = breed;
         this.address = address;
         this.imageUrl = imageUrl;
+        this.adopter = adopter;
     }
 
     @PrePersist
@@ -187,6 +194,10 @@ public class Animal implements Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public Adopter getAdopter() {return adopter;}
+
+    public void setAdopter(Adopter adopter) {this.adopter = adopter;}
 
     @Override
     public int hashCode() {

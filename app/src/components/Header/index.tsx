@@ -15,11 +15,11 @@ import { useAuth } from "../../hook/auth";
 import { Background } from "../Background";
 
 type Props = {
-  title: string;
+  title?: string;
   isVisibleBack?: boolean;
   isVisibleLogout?: boolean;
   cor?: string;
-  isDefaultButton?: boolean
+  isDefaultButton?: boolean;
 };
 
 export function Header({
@@ -27,7 +27,7 @@ export function Header({
   isVisibleBack = false,
   isVisibleLogout = false,
   cor = theme.colors.black,
-  isDefaultButton = true
+  isDefaultButton = true,
 }: Props) {
   const { singOut } = useAuth();
 
@@ -45,7 +45,11 @@ export function Header({
         </BorderlessButton>
       )}
 
-      <Text style={[styles.title, { color: cor }]}>{title}</Text>
+      {title ? (
+        <Text style={[styles.title, { color: cor }]}>{title}</Text>
+      ) : (
+        <Text />
+      )}
 
       {isVisibleLogout ? (
         <BorderlessButton onPress={() => singOut()}>

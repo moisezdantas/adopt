@@ -8,6 +8,7 @@ import { Donation } from "../screens/Donation";
 import { GodFather } from "../screens/GodFather";
 import { RegisterFriend } from "../screens/RegisterFriend";
 import { ToAdoptDetails } from "../screens/ToAdoptDetails";
+import { ToAdoptSuccess } from "../screens/ToAdoptSuccess";
 
 const App = createStackNavigator();
 
@@ -27,6 +28,7 @@ export function AppRoutes() {
       <App.Screen name='RegisterFriend' component={RegisterFriend} />
       <App.Screen name='GodFather' component={GodFather} />
       <App.Screen name='ToAdoptDetails' component={ToAdoptDetails} />
+      <App.Screen name='ToAdoptSuccess' component={ToAdoptSuccess} />
     </App.Navigator>
   );
 }

@@ -16,11 +16,7 @@ public class Adopter implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "animal_id")
-    private Animal animal;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "person_id")
     private Person person;
 
     @Column(name = "created_at")
@@ -34,14 +30,6 @@ public class Adopter implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Animal getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
     }
 
     public Person getPerson() {

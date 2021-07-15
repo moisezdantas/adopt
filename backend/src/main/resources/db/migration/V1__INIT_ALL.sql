@@ -119,6 +119,14 @@ CREATE TABLE `tb_breed` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `tb_adopter` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `person_id` bigint DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`person_id`) REFERENCES `tb_person` (`id`)
+);
+
 CREATE TABLE `tb_animal` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -133,8 +141,12 @@ CREATE TABLE `tb_animal` (
   `year` bigint DEFAULT NULL,
   `breed_id` bigint DEFAULT NULL,
   `address_id` bigint DEFAULT NULL,
+  `adopter_id` bigint DEFAULT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`breed_id`) REFERENCES `tb_breed` (`id`),
-  FOREIGN KEY (`address_id`) REFERENCES `tb_address` (`id`)
+  FOREIGN KEY (`address_id`) REFERENCES `tb_address` (`id`),
+  FOREIGN KEY (`adopter_id`) REFERENCES `tb_adopter` (`id`)
 );
+
+

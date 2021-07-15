@@ -14,7 +14,7 @@ import java.util.Calendar;
 public class AdoptService {
 
     @Autowired
-    private AdoptRepository aoAdoptRepository;
+    private AdoptRepository adoptRepository;
 
     @Autowired
     private PersonService personService;
@@ -27,10 +27,13 @@ public class AdoptService {
         Animal animal = animalService.findAnimalById(dto.getAnimalId());
 
         Adopter adopter = new Adopter();
-        adopter.setAnimal(animal);
         adopter.setPerson(person);
-        adopter.setCreatedAt(Calendar.getInstance());
 
+        adopter.setCreatedAt(Calendar.getInstance());
+        adoptRepository.save(adopter);
+
+        animal.setAdopter(adopter);
+        animalService.update(animal);
     }
 
 }
