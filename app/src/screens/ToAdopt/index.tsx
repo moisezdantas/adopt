@@ -40,20 +40,31 @@ export function ToAdopt() {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchAnimalType();
-      const types = response.map((item) => {
-        return { ...item, checked: false };
-      });
-      setAnimalTypes(types);
-    };
+  const fetchData = async () => {
+    const response = await fetchAnimalType();
+    const types = response.map((item) => {
+      return { ...item, checked: false };
+    });
+    setAnimalTypes(types);
+  };
+
+  useEffect(() => {    
     fetchData();
   }, []);
 
   useEffect(() => {
     fetchDataAnimal(selectAnimalType);
   }, [selectAnimalType]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchData();
+      fetchDataAnimal()
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
 
   const handleSelect = useCallback(async (data: AnimalType, list: any) => {
     const listTypes = list.map((item: any) => {
@@ -68,8 +79,9 @@ export function ToAdopt() {
     setSelectAnimalType(data.id);
   }, []);
 
-  function details(data: Animal) {
+  async function details(data: Animal) {
     navigation.navigate("ToAdoptDetails", { data });
+    
   }
 
   return (

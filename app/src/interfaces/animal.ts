@@ -8,7 +8,7 @@ export interface Animal {
     birthDate: string,
     deficiency: string | null,
     typeVaccinated: string | null,
-    typeAnimalGender: string,
+    typeAnimalGender: string | number,
     year: string | null,
     note: string,
     breed: Breed

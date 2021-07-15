@@ -6,26 +6,28 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop:  25,
+   
   },
   view:{
-    backgroundColor: theme.colors.purple,
     color: theme.colors.white,
     marginBottom: 70
   },
   image: {
     width: 259,
     height: 189,
-    marginTop: 80,
+    marginTop: 170,
     borderRadius: 15,
     alignSelf: 'center'
   },
   content: {
-    marginTop: 50,
+    marginTop: 20,
     justifyContent:'center',
     alignContent: 'center',
     alignItems: 'center',
     paddingLeft: 30,
-    paddingRight: 30
+    paddingRight: 30,
+    backgroundColor: theme.colors.white,
+    marginBottom: 30
   },
   row:{
     flexDirection: 'row',
@@ -34,17 +36,20 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
   description: {
-    marginTop: 30,
+    marginTop: 80,
     fontSize: 20,
     fontFamily: theme.fonts.title500,
     color: theme.colors.white,
-    marginBottom: 30
+    marginBottom: 30,
+    textAlign: 'center'
   },
   screenWrapper: {
+    backgroundColor: theme.colors.purple,
     flex: 1,
-    width: undefined,
-    height: undefined,
+    width: 400,
+    height: 540,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
 });

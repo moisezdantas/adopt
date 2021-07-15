@@ -40,8 +40,8 @@ type AnimalPaginationRequest = PaginationRequest & {
 }
 
 type AdoptAnimaProps = {
-    animalId: number;
-    userId: number;
+    animalId: string;
+    userId: string;
 }
 
 const BASE_URL = api.defaults.baseURL

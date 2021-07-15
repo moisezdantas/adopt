@@ -18,6 +18,8 @@ import { styles } from "./styles";
 import { theme } from "../../global/styles/theme";
 import { api } from "../../services/api";
 import { Button } from "../../components/Button";
+import { adoptAnimal } from '../../services/request';
+import { useAuth } from "../../hook/auth";
 
 type Params = {
   data: Animal;
@@ -25,16 +27,16 @@ type Params = {
 
 export function ToAdoptDetails() {
   const route = useRoute();
+  const { user } = useAuth();
   const { data } = route.params as Params;
 
   const navigation = useNavigation();
 
   const urlImage = `${api.defaults.baseURL}/storage/view/${data.imageUrl}`;
 
-  console.log(data);
 
   async function adopter() {
-    Alert.alert("Adotar", "Deseja realmente adotar um amigo", [
+    Alert.alert("Adotar", "Deseja realmente adotar um amigo(a)", [
       {
         text: "Não",
         style: "cancel",
@@ -46,8 +48,14 @@ export function ToAdoptDetails() {
     ]);
   }
 
-  function goAdopterSuccess() {
-    navigation.navigate("ToAdoptSuccess", { data });
+  async function goAdopterSuccess() {
+
+    try {
+      await adoptAnimal({animalId: data.id, userId: user.id})
+      navigation.navigate("ToAdoptSuccess", { data });
+    } catch (error) {
+      Alert.alert("Erro", 'Erro ao adotar uma amigo(a)');
+    }
   }
 
   return (
