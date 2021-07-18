@@ -60,12 +60,27 @@ public class PersonService {
      */
     @Transactional
     public PersonDTO update(Long id, PersonDTO personDTO){
-        Person personExist = findByPersonId(id);
+        Person personExist = id != null ? findByPersonId(id): findPersonByUserId(personDTO.getUser().getId());
         userService.update(personDTO.getUser().getId(), personDTO.getUser());
         copyDtoToEntity(personDTO, personExist);
         personExist = personRepository.save(personExist);
         return new PersonDTO(personExist);
     }
+
+
+    /**
+     * Method to updated user by id
+     * @param personDTO
+     * @return PersonDTO
+     */
+    @Transactional
+    public PersonDTO updateByUser(PersonDTO personDTO){
+        Person personExist = findPersonByUserId(personDTO.getUser().getId());
+        copyDtoToEntity(personDTO, personExist);
+        personExist = personRepository.save(personExist);
+        return new PersonDTO(personExist);
+    }
+
 
     /**
      * Method to delete user by id

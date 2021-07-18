@@ -26,7 +26,7 @@ public class BreedService {
      */
     @Transactional(readOnly = true)
     public ArrayList<BreedDTO> findAll() {
-        List<Breed> list = breedRepository.findAll();
+        List<Breed> list = breedRepository.findAllOrderByName();
         ArrayList<BreedDTO> breedDTOS = new ArrayList<>();
         list.forEach(x -> breedDTOS.add(new BreedDTO(x)));
         return breedDTOS;

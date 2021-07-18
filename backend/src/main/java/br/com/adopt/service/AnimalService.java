@@ -91,10 +91,11 @@ public class AnimalService {
      * @param dto
      * @return AnimalDTO
      */
-    @Transactional(readOnly = true)
+    @Transactional
     public AnimalDTO create(AnimalDTO dto) {
         Animal animal = new Animal();
         copyDtoToEntity(dto, animal);
+        animal = animalRepository.save(animal);
         return new AnimalDTO(animal);
     }
 
@@ -116,19 +117,20 @@ public class AnimalService {
      * @param animal
      */
     private void copyDtoToEntity(AnimalDTO dto, Animal animal) {
-        animal.setYear(dto.getYear());
-        animal.setIsCastrated(dto.isCastrated());
+        animal.setYear(dto.getYear() != null ? dto.getYear() : null);
+        animal.setIsCastrated(dto.isCastrated() != null ? dto.isCastrated() : null);
         animal.setAddress(addressService.createAddress(dto.getAddress()));
         animal.setBreed(breedService.findById(dto.getBreed().getId()));
         animal.setIsCastrated(dto.isCastrated());
         animal.setNote(dto.getNote());
         animal.setDeficiency(dto.getDeficiency());
-        animal.setBirthDate(dto.getBirthDate());
-        animal.setRga(dto.getRga());
+        animal.setBirthDate(dto.getBirthDate() != null ? dto.getBirthDate(): null);
+        animal.setRga(dto.getRga() != null ? dto.getRga() : null);
         animal.setName(dto.getName());
+        animal.setImageUrl(dto.getImageUrl());
 
-        if (animal.getTypeAnimalGender() != null) {
-            EnumTypeAnimalGender typeAnimalGender = animal.getTypeAnimalGender().equals(EnumTypeAnimalGender.MALE.ordinal()) ?
+        if (dto.getTypeAnimalGender() != null) {
+            EnumTypeAnimalGender typeAnimalGender = dto.getTypeAnimalGender() == EnumTypeAnimalGender.MALE.ordinal() ?
                     EnumTypeAnimalGender.MALE : EnumTypeAnimalGender.FEMALE;
             animal.setTypeAnimalGender(typeAnimalGender);
         }

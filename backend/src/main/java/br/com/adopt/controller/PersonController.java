@@ -39,4 +39,18 @@ public class PersonController {
         return ResponseEntity.created(uri).body(dtoSave);
     }
 
+    @ApiOperation(value = "Update a new object into the database")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = ApiUtilOperation.MESSAGE_200),
+            @ApiResponse(code = 400, message = ApiUtilOperation.MESSAGE_400),
+            @ApiResponse(code = 401, message = ApiUtilOperation.MESSAGE_401),
+            @ApiResponse(code = 403, message = ApiUtilOperation.MESSAGE_403),
+            @ApiResponse(code = 404, message = ApiUtilOperation.MESSAGE_404),
+            @ApiResponse(code = 500, message = ApiUtilOperation.MESSAGE_500),
+    })
+    @PostMapping("/profile")
+    public ResponseEntity<PersonDTO> update(@Valid @RequestBody PersonDTO dto) {
+        PersonDTO dtoSave = personService.updateByUser(dto);
+        return ResponseEntity.ok(dtoSave);
+    }
 }

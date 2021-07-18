@@ -2,12 +2,12 @@ import { Address } from "./address";
 import { Breed } from "./breed";
 
 export interface Animal {
-    id: string,
+    id?: string | number,
     name: string,
-    rga: string | null,
-    birthDate: string,
+    rga?: string | null,
+    birthDate?: string,
     deficiency: string | null,
-    typeVaccinated: string | null,
+    typeVaccinated?: string | null,
     typeAnimalGender: string | number,
     year: string | null,
     note: string,

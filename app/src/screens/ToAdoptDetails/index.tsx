@@ -18,7 +18,7 @@ import { styles } from "./styles";
 import { theme } from "../../global/styles/theme";
 import { api } from "../../services/api";
 import { Button } from "../../components/Button";
-import { adoptAnimal } from '../../services/request';
+import { createAdoptAnimal } from '../../services/request';
 import { useAuth } from "../../hook/auth";
 
 type Params = {
@@ -51,7 +51,7 @@ export function ToAdoptDetails() {
   async function goAdopterSuccess() {
 
     try {
-      await adoptAnimal({animalId: data.id, userId: user.id})
+      await createAdoptAnimal({animalId: data.id, userId: user.id})
       navigation.navigate("ToAdoptSuccess", { data });
     } catch (error) {
       Alert.alert("Erro", 'Erro ao adotar uma amigo(a)');

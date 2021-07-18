@@ -87,10 +87,11 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   async function loadUserStorageData() {
     const storage = await AsyncStorage.getItem(COLLECTION_USERS);
-
+    
     if (storage) {
       const userLogged = JSON.parse(storage) as User;
       api.defaults.headers.authorization = `Bearer ${userLogged.access_token}`;
+      setUser(userLogged);
     }
   }
 

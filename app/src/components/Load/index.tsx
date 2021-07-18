@@ -8,7 +8,10 @@ import { styles } from "./styles";
 export function Load() {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={theme.colors.purple} />
+      <ActivityIndicator 
+      size="large" 
+      color={theme.colors.purple} 
+      />
     </View>
   );
 }

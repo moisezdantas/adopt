@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     },
     user: {
         flexDirection: 'row',
+        marginBottom: 10,
     },
     greeting: {
         fontFamily: theme.fonts.title500,

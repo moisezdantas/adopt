@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, LogBox } from "react-native";
+import { StatusBar, LogBox, Text } from "react-native";
 import {
   useFonts,
   Roboto_300Light,

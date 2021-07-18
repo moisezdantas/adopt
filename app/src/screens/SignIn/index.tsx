@@ -1,8 +1,4 @@
-import React, { useRef } from "react";
-
-import { Form } from "@unform/mobile";
-
-import { FormHandles } from "@unform/core";
+import React, { useRef, useState } from "react";
 
 import {
   Text,
@@ -12,19 +8,20 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import Input from "../../components/Input";
-import { Button } from "../../components/Button";
-import * as Yup from "yup";
 import { useAuth } from "../../hook/auth";
+import { useNavigation } from "@react-navigation/native";
 
-import getValidationErrors from "../../utils/getValidationErrors";
-
-import LogoSvg from "../../assets/animal.svg";
+import { Form } from "@unform/mobile";
+import { FormHandles } from "@unform/core";
 
 import { styles } from "./styles";
-
-import { useNavigation } from "@react-navigation/native";
 import { theme } from "../../global/styles/theme";
+
+import Input from "../../components/Input";
+import LogoSvg from "../../assets/animal.svg";
+import { Button } from "../../components/Button";
+import * as Yup from "yup";
+import getValidationErrors from "../../utils/getValidationErrors";
 
 interface SignInFormData {
   email: string;
@@ -34,12 +31,14 @@ interface SignInFormData {
 export function SignIn() {
   const { signIn } = useAuth();
   const formRef = useRef<FormHandles>(null);
+  const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
 
   async function handleSubmit(data: SignInFormData) {
     try {
       formRef.current?.setErrors({});
+      setLoading(true);
 
       const schema = Yup.object().shape({
         email: Yup.string()
@@ -56,15 +55,17 @@ export function SignIn() {
         email: data.email,
         password: data.password,
       });
+      setLoading(false);
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error);
 
         formRef.current?.setErrors(errors);
 
+        setLoading(false);
         return;
       }
-    }
+    } 
   }
 
   function signUp() {

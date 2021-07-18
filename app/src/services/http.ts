@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLLECTION_USERS } from "../config/user";
-import { User } from "../hook/auth";
+import { useAuth, User } from "../hook/auth";
 import { api } from "./api";
 
 enum StatusCode {
@@ -37,6 +37,7 @@ const injectToken = async (config: AxiosRequestConfig): Promise<AxiosRequestConf
 
 class Http {
   private instance: AxiosInstance | null = null;
+  
 
   private get http(): AxiosInstance {
     return this.instance != null ? this.instance : this.initHttp();
@@ -55,7 +56,6 @@ class Http {
       (response) => response,
       (error) => {
         const { response } = error;
-        console.log(error)
         return this.handleError(response);
       }
     );
@@ -96,7 +96,6 @@ class Http {
   // We can handle generic app errors depending on the status code
   private handleError(error: { status: any; }) {
     const { status } = error;
-
     switch (status) {
       case StatusCode.InternalServerError: {
         // Handle InternalServerError
@@ -107,7 +106,6 @@ class Http {
         break;
       }
       case StatusCode.Unauthorized: {
-        // Handle Unauthorized
         break;
       }
       case StatusCode.TooManyRequests: {

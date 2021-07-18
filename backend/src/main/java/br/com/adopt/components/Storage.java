@@ -55,7 +55,7 @@ public class Storage {
 
                 minioClient.uploadObject(args);
 
-                LOGGER.info("File successfully uploaded" + dto.getImgUrl() + "to" + defaultBucketName);
+                LOGGER.info("File successfully uploaded " + dto.getImgUrl() + " to " + defaultBucketName);
 
                 File fileDelete = new File(file.toURI());
                 fileDelete.delete();

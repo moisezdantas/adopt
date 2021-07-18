@@ -10,10 +10,10 @@ import { api } from "../../services/api";
 import { styles } from "./styles";
 
 type Props = {
-  id: string;
+  id?: string | number;
   name: string;
   address: Address;
-  note: string;
+  note?: string;
   imageUrl: string;
   breed: Breed;
 };

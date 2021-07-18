@@ -1,5 +1,5 @@
 import React from "react";
-import { View, KeyboardAvoidingView, Platform, FlatList } from "react-native";
+import { View, KeyboardAvoidingView, Platform, FlatList, Text } from "react-native";
 
 import LogoSvg from "../../assets/animal.svg";
 
@@ -11,6 +11,7 @@ import { Background } from "../../components/Background";
 
 import { Profile } from "../../components/Profile";
 import { useNavigation } from "@react-navigation/native";
+import { Button } from "../../components/Button";
 
 export function Home() {
   const navigation = useNavigation();
@@ -65,7 +66,7 @@ export function Home() {
               );
             }}
           />
-        </View>
+        </View>     
       </Background>
     </KeyboardAvoidingView>
   );

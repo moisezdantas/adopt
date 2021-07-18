@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { useAuth } from "../../hook/auth";
-import { View, KeyboardAvoidingView, Platform, FlatList } from "react-native";
+import React, { useState, useEffect, useCallback} from "react";
+import { View, FlatList } from "react-native";
 
 import { theme } from "../../global/styles/theme";
 
@@ -11,7 +10,8 @@ import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/Header";
 import { Card } from "../../components/Card";
 import { ButtonRound } from "../../components/ButtonRound";
-import { fetchAnimalType, fetchAnimal } from "../../services/request";
+import { fetchAnimalType } from '../../services/animalTypeService'
+import { fetchAnimal } from "../../services/animalService";
 import { AnimalType } from "../../interfaces/animalType";
 import { Animal } from "../../interfaces/animal";
 import { Load } from "../../components/Load";
@@ -28,7 +28,6 @@ export function ToAdopt() {
   const [selectAnimalType, setSelectAnimalType] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const { user } = useAuth();
   const navigation = useNavigation();
 
   const fetchDataAnimal = useCallback(async (animalTypeId?: number) => {
@@ -91,6 +90,7 @@ export function ToAdopt() {
         <FlatList
           data={animalTypes}
           horizontal
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
             return (
               <ButtonRound

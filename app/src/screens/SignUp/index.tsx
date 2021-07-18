@@ -12,18 +12,15 @@ import { FormHandles } from "@unform/core";
 import { Background } from "../../components/Background";
 import Input from "../../components/Input";
 import SelectInput from "../../components/SelectInput";
-
-import { styles } from "./styles";
 import { Button } from "../../components/Button";
 import { theme } from "../../global/styles/theme";
 import { Header } from "../../components/Header";
-
-import getValidationErrors from "../../utils/getValidationErrors";
-
-import * as Yup from "yup";
 import { CreatePerson } from "../../services/request";
-import AppLoading from "expo-app-loading";
 import { useNavigation } from "@react-navigation/native";
+
+import { styles } from "./styles";
+import * as Yup from "yup";
+import getValidationErrors from "../../utils/getValidationErrors";
 
 interface SignUpFormData {
   name: string;
@@ -84,6 +81,7 @@ export function SignUp() {
         },
       })
         .then((response) => {
+           Alert.alert("Info", 'Cadastro efetuado com sucesso!');
           navigation.goBack();
         })
         .catch((error) => {
@@ -106,7 +104,6 @@ export function SignUp() {
   return (
     <Background>
       <View style={styles.container}>
-        {loading && <AppLoading />}
         <Header title="Criar Conta" isVisibleBack />
         <ScrollView>
           <View style={styles.content}>
@@ -116,7 +113,7 @@ export function SignUp() {
               <SelectInput
                 name="typeGender"
                 items={options}
-                placeHolder="Selecione uma opção"
+                placeHolder="Selecione uma sexo"
               />
               <Input name="mobilePhone" placeholder="Digite seu celular" />
               <Input
@@ -133,6 +130,7 @@ export function SignUp() {
                 title="Cadastrar"
                 cor={theme.colors.buttonSuccess}
                 onPress={() => formRef.current?.submitForm()}
+                loading={loading}
               />
             </Form>
           </View>
