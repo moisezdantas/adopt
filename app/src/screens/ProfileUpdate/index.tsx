@@ -98,7 +98,7 @@ export function ProfileUpdate() {
   return (
     <Background>
       <View style={styles.container}>
-        <Header title={`Atualizar Dados}`} isVisibleBack isVisibleLogout />
+        <Header title={`Atualizar Dados`} isVisibleBack isVisibleLogout />
 
         <ScrollView>
           <View style={styles.content}>

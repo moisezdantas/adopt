@@ -43,10 +43,6 @@ public class Person implements Serializable {
     private EnumStatus status;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "tb_person_donation", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "donation_id"))
-    private Set<Donation> donations = new HashSet<>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_person_address", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
     private Set<Address> address = new HashSet<>();
 
@@ -57,7 +53,7 @@ public class Person implements Serializable {
     }
 
     public Person(Long id, User user, String name, String mobilePhone, String cpf, String rg, String cnpj,
-                  EnumGender typeGender, EnumPersonType typePerson, Set<Donation> donations, Set<Address> address, EnumStatus status) {
+                  EnumGender typeGender, EnumPersonType typePerson, Set<Address> address, EnumStatus status) {
         this.id = id;
         this.user = user;
         this.name = name;
@@ -67,7 +63,6 @@ public class Person implements Serializable {
         this.cnpj = cnpj;
         this.typeGender = typeGender;
         this.typePerson = typePerson;
-        this.donations = donations;
         this.address = address;
         this.status = status;
     }
@@ -147,14 +142,6 @@ public class Person implements Serializable {
 
     public void setTypePerson(EnumPersonType typePerson) {
         this.typePerson = typePerson;
-    }
-
-    public Set<Donation> getDonations() {
-        return donations;
-    }
-
-    public void setDonations(Set<Donation> donations) {
-        this.donations = donations;
     }
 
     public Set<Address> getAddress() {

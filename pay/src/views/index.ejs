@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Carregando pagamento PayPal</h2>
+    <form name="f1" action="/paypal" method="POST">
+      <input type="hidden" name="userId" id="userId" value="<%=userId%>" />
+      <input type="hidden" name="price" id="price" value="<%=price%>" />
+      <input type="hidden" name="token" id="token" value="<%=token%>" />
+      <input
+        type="hidden"
+        name="description"
+        id="description"
+        value="<%=description%>"
+      /><br />
+      <button type="submit" hidden >Pay</button>
+    </form>
+  </body>
+</html>

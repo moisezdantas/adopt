@@ -41,12 +41,12 @@ export function Home() {
               },
               {
                 id: "02",
-                title: "Seja um padrinho",
+                title: "Atualizar Perfil",
                 cor: theme.colors.buttonBlue,
-                change: () => navigation.navigate("GodFather"),
+                change: () => navigation.navigate("ProfileUpdate"),
               },
               {
-                id: "03",
+                id: "02",
                 title: "Cadastrar um amigo",
                 cor: theme.colors.buttonBlue2,
                 change: () => navigation.navigate("RegisterFriend"),

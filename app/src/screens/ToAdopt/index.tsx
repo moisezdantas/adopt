@@ -23,7 +23,7 @@ type PropsAnimalType = {
 };
 
 export function ToAdopt() {
-  const [animalTypes, setAnimalTypes] = useState<PropsAnimalType[]>();
+  const [animalTypes, setAnimalTypes] = useState<any[]>();
   const [animals, setAnimals] = useState<Animal[]>();
   const [selectAnimalType, setSelectAnimalType] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -110,7 +110,7 @@ export function ToAdopt() {
           ) : (
             <FlatList
               data={animals}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => {
                 return <Card data={item} onPress={() => details(item)} />;
               }}

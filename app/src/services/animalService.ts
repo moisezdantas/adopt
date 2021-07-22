@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { Animal } from './../interfaces/animal';
 
 import { http } from './http'
@@ -19,7 +20,7 @@ type AnimalPaginationRequest = PaginationRequest & {
     animalTypeId?: number;
 }
 
-type AdoptAnimaProps = {
+export type  AdoptAnimaProps = {
     animalId: string;
     userId: string;
 }
@@ -46,9 +47,9 @@ export const createAdoptAnimal = async ({
 };
 
 
-export const createAnimal = async (data: Animal) : Promise<Animal> => {
+export const createAnimal = async (data: Omit<Animal, "id">) : Promise<Animal> => {
 
-    const response = await http.post<Animal>('animal', data);
+    const response = await http.post<Omit<Animal, "id">, AxiosResponse<Animal>>('animal', data);
 
     return response.data;
 }

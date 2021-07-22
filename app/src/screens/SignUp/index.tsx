@@ -21,6 +21,7 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import * as Yup from "yup";
 import getValidationErrors from "../../utils/getValidationErrors";
+import InputMask from "../../components/InputMask";
 
 interface SignUpFormData {
   name: string;
@@ -115,7 +116,10 @@ export function SignUp() {
                 items={options}
                 placeHolder="Selecione uma sexo"
               />
-              <Input name="mobilePhone" placeholder="Digite seu celular" />
+              <InputMask 
+                type='cel-phone'
+                name="mobilePhone" 
+                placeholder="Digite seu celular" />
               <Input
                 name="password"
                 placeholder="Digite sua senha"

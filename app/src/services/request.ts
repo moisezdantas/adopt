@@ -38,6 +38,7 @@ export const MakeLogin = (loginData: LoginData) => {
         'Authorization': `Basic ${Base64.btoa(token)}`,
         'Content-Type': 'application/x-www-form-urlencoded',
     }
+    console.log()
 
     return MakeRequest({
         url: '/oauth/token',

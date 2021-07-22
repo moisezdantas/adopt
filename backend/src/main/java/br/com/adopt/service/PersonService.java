@@ -120,7 +120,10 @@ public class PersonService {
      * @return Person
      */
     private Person copyDtoToEntity(PersonDTO personDTO, Person person){
-        person.setName(personDTO.getName());
+        if(personDTO.getName() != null){
+            person.setName(personDTO.getName());
+        }
+
         person.setMobilePhone(personDTO.getMobilePhone());
         person.setCnpj(person.getCnpj());
         person.setRg(person.getRg());

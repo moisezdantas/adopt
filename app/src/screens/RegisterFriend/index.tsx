@@ -55,7 +55,7 @@ interface ImageProps {
 
 export function RegisterFriend() {
   const formRef = useRef<FormHandles>(null);
-  const [breedsOptions, setBreedsOptions] = useState<Item[]>([]);
+  const [breedsOptions, setBreedsOptions] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [resultImage, setResultImage] = useState<ImageProps>();
   const [erroImage, setErroImage] = useState(false);
@@ -129,8 +129,6 @@ export function RegisterFriend() {
     form_data.append("file", myImage as any);
 
     const response =  await fetchUpload({ data: form_data });
-
-    console.log(response.imgUrl)
 
     return response.imgUrl;
   }

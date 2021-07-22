@@ -2,7 +2,7 @@ import { Address } from "./address";
 import { Breed } from "./breed";
 
 export interface Animal {
-    id?: string | number,
+    id: string,
     name: string,
     rga?: string | null,
     birthDate?: string,

@@ -14,7 +14,7 @@ public class PersonFactory {
         addressList = AddressFactory.createListBasic();
 
         Person person = new Person(id, user, "Teste","Teste","11 1521-7475",
-                "1234567890","307669800", EnumGender.MAN, EnumPersonType.PHYSICAL, null, addressList, status);
+                "1234567890","307669800", EnumGender.MAN, EnumPersonType.PHYSICAL,  addressList, status);
         return person;
     }
 

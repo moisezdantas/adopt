@@ -6,7 +6,7 @@ export const theme = {
       buttonSuccess: '#419D76',
       buttonLabel: '#E0E0E0',
       black: '#000000',
-      gray: '#BDBDBD',
+      gray: '#C4C4C4',
       red: '#c53030',
       placeholder: '#666360',
       buttonBlue:'#86A8DC',

@@ -11,6 +11,7 @@ interface InputProps extends TextInputProps {
   name: string;
   placeholder: string;
   icon?: string;
+  rawText?: string;
 }
 
 interface InputReference extends TextInput {
@@ -22,6 +23,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   icon,
   onChangeText,
+  rawText,
   ...rest
 }) => {
   const inputRef = useRef<InputReference>(null);
@@ -37,10 +39,13 @@ const Input: React.FC<InputProps> = ({
       name: fieldName,
       ref: inputRef.current,
       getValue() {
+        if (rawText) return rawText;
+
         if (inputRef.current) return inputRef.current.value;
+        
         return '';
       },
-      setValue(ref, value) {
+      setValue(_, value) {
         if (inputRef.current) {
           inputRef.current.setNativeProps({ text: value });
           inputRef.current.value = value;
@@ -53,17 +58,18 @@ const Input: React.FC<InputProps> = ({
         }
       },
     });
-  }, [fieldName, registerField]);
+  }, [fieldName, registerField, rawText]);
+
   const handleChangeText = useCallback((value: string) => {
-      if (inputRef.current) {
-        inputRef.current.value = value
-      };
-      if (onChangeText) {
-        onChangeText(value)
-      };
+  
+
+      if (inputRef.current) inputRef.current.value = value
+
+      if (onChangeText) onChangeText(value)
     },
     [onChangeText],
   );
+
   return (
     <View style={styles.container}>
       <View style={[styles.context, , error ? styles.red : styles.orange]}>

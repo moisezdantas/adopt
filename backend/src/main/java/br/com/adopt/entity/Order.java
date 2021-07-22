@@ -16,19 +16,37 @@ public class Order implements Serializable{
 	private Long id;
 	
 	private String status;
-	private String uuid;
+
+	private String sku;
+
+	private String description;
+
+	private Double price;
+
+	@Column(name = "payer_id")
+	private String payerID;
+
+	@Column(name = "payment_id")
+	private String paymentId;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "person_id")
+	private Person person;
 
 	@Column(name = "created_at")
 	private Calendar createdAt;
 	
 	public Order() {}
 
-	public Order(Long id, String status, String uuid, Calendar createdAt) {
-		super();
+	public Order(Long id, String status, String sku, String description, Double price, String payerID, String paymentId, Person person) {
 		this.id = id;
 		this.status = status;
-		this.uuid = uuid;
-		this.createdAt = createdAt;
+		this.sku = sku;
+		this.description = description;
+		this.price = price;
+		this.payerID = payerID;
+		this.paymentId = paymentId;
+		this.person = person;
 	}
 
 	@PrePersist
@@ -52,12 +70,52 @@ public class Order implements Serializable{
 		this.status = status;
 	}
 
-	public String getUuid() {
-		return uuid;
+	public String getSku() {
+		return sku;
 	}
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public String getPayerID() {
+		return payerID;
+	}
+
+	public void setPayerID(String payerID) {
+		this.payerID = payerID;
+	}
+
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public Calendar getCreatedAt() {

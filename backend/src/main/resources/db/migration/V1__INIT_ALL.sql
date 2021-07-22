@@ -19,26 +19,7 @@ CREATE TABLE `tb_user` (
   UNIQUE KEY (`email`)
 );
 
-CREATE TABLE `tb_donation` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `card_number` varchar(255) DEFAULT NULL,
-  `code_secret` varchar(255) DEFAULT NULL,
-  `cpf` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `due_date` varchar(255) DEFAULT NULL,
-  `mobile_phone` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `rg` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
 
-CREATE TABLE `tb_order` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  `uuid` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
 
 CREATE TABLE `tb_person` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -56,15 +37,19 @@ CREATE TABLE `tb_person` (
   FOREIGN KEY (`user_id`) REFERENCES `tb_user` (`id`)
 );
 
-
-CREATE TABLE `tb_donation_order` (
-  `donation_id` bigint NOT NULL,
-  `order_id` bigint NOT NULL,
-  PRIMARY KEY (`donation_id`,`order_id`),
-  FOREIGN KEY (`donation_id`) REFERENCES `tb_donation` (`id`),
-  FOREIGN KEY (`order_id`) REFERENCES `tb_order` (`id`)
+CREATE TABLE `tb_order` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` datetime NOT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `payer_id` varchar(255) DEFAULT NULL,
+  `payment_id` varchar(255) DEFAULT NULL,
+  `person_id` bigint DEFAULT NULL,
+  `price` double DEFAULT NULL,
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`person_id`) REFERENCES `tb_person` (`id`)
 );
-
 
 CREATE TABLE `tb_person_address` (
   `person_id` bigint NOT NULL,
@@ -73,16 +58,6 @@ CREATE TABLE `tb_person_address` (
   FOREIGN KEY (`person_id`) REFERENCES `tb_person` (`id`),
   FOREIGN KEY (`address_id`) REFERENCES `tb_address` (`id`)
 );
-
-
-CREATE TABLE `tb_person_donation` (
-  `person_id` bigint NOT NULL,
-  `donation_id` bigint NOT NULL,
-  PRIMARY KEY (`person_id`,`donation_id`),
-  FOREIGN KEY (`person_id`) REFERENCES `tb_person` (`id`),
-  FOREIGN KEY (`donation_id`) REFERENCES `tb_donation` (`id`)
-);
-
 
 CREATE TABLE `tb_role` (
   `id` bigint NOT NULL AUTO_INCREMENT,
