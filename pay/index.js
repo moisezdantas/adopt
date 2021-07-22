@@ -26,7 +26,7 @@ paypal.configure({
 app.get("/", (req, res) => {
   const { price, description, userId, token } = req.query;
 
-  const newPrice = price.replace(".", ""));
+  const newPrice = price.replace(".", "");
 
   res.render("index", {
     price: newPrice,
